@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Қазынаны тап</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    text-align:center;
+    background:#f4f4f4;
+}
+
+h1{
+    color:#333;
+}
+
+#game{
+    width:320px;
+    height:240px;
+    margin:20px auto;
+    position:relative;
+    border:3px solid #333;
+    background:#d0f0c0;
+}
+
+#hero{
+    width:40px;
+    height:40px;
+    background:blue;
+    position:absolute;
+    left:0;
+    top:0;
+    border-radius:50%;
+}
+
+#treasure{
+    width:40px;
+    height:40px;
+    background:gold;
+    position:absolute;
+    right:0;
+    bottom:0;
+    border-radius:10px;
+}
+
+button{
+    width:80px;
+    height:40px;
+    margin:5px;
+    font-size:18px;
+    cursor:pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>🏆 Қазынаны тап!</h1>
+<p>Көк батырды алтын қазынаға жеткіз.</p>
+
+<div id="game">
+    <div id="hero"></div>
+    <div id="treasure"></div>
+</div>
+
+<div>
+    <button onclick="move('up')">⬆️</button><br>
+    <button onclick="move('left')">⬅️</button>
+    <button onclick="move('right')">➡️</button><br>
+    <button onclick="move('down')">⬇️</button>
+</div>
+
+<p id="message"></p>
+
+<script>
+let hero = document.getElementById("hero");
+let message = document.getElementById("message");
+
+let x = 0;
+let y = 0;
+const step = 40;
+
+function move(direction){
+
+    if(direction === "right" && x < 280) x += step;
+    if(direction === "left" && x > 0) x -= step;
+    if(direction === "down" && y < 200) y += step;
+    if(direction === "up" && y > 0) y -= step;
+
+    hero.style.left = x + "px";
+    hero.style.top = y + "px";
+
+    checkWin();
+}
+
+function checkWin(){
+    if(x >= 280 && y >= 200){
+        message.innerHTML = "🎉 Құттықтаймыз! Сіз қазынаны таптыңыз!";
+    }
+}
+</script>
+
+</body>
+</html>
